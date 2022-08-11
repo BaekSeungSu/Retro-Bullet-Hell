@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public string enemyName;
+    public int enemyScore;
     public float speed;
     [SerializeField]
     private int health;
@@ -74,6 +75,8 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0)
         {
+            PlayerMove playerLogic = player.GetComponent<PlayerMove>();
+            playerLogic.score += enemyScore;
             Destroy(gameObject);
         }
     }

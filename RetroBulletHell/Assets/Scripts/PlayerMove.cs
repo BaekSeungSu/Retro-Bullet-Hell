@@ -6,24 +6,24 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField]
     private int life;
-    [SerializeField]
-    private int score;
+
+    public int score;
+
     [SerializeField]
     private float speed;
+
     [SerializeField]
     private float maxShotDelay;
+
     [SerializeField]
     private float curShotDelay;
+
     [SerializeField]
     private float power;
 
-    [SerializeField]
     private bool isTouchTop;
-    [SerializeField]
     private bool isTouchBottom;
-    [SerializeField]
     private bool isTouchRight;
-    [SerializeField]
     private bool isTouchLeft;
 
 
@@ -31,6 +31,8 @@ public class PlayerMove : MonoBehaviour
     public GameObject bulletObjB;
 
     public GameManager manager;
+    public bool isHit;
+
 
     Animator anim;
 
@@ -119,8 +121,23 @@ public class PlayerMove : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
-            manager.RespawnPlayer();
+            if (isHit)
+                return;
+
+            isHit = true;
+            life--;
+            manager.UpdateLifeIcon(life);
+
+            if (life == 0)
+            {
+                manager.GameOver();
+            }
+            else
+            {
+                manager.RespawnPlayer();
+            }
             gameObject.SetActive(false);
+            Destroy(collision.gameObject);
         }
     }
 
