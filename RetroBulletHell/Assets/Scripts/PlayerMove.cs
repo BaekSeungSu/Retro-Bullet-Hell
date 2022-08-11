@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField]
+    private int life;
+    [SerializeField]
+    private int score;
+    [SerializeField]
     private float speed;
     [SerializeField]
     private float maxShotDelay;
@@ -22,11 +26,11 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private bool isTouchLeft;
 
-   
-
 
     public GameObject bulletObjA;
     public GameObject bulletObjB;
+
+    public GameManager manager;
 
     Animator anim;
 
@@ -113,9 +117,14 @@ public class PlayerMove : MonoBehaviour
                     break;
             }
         }
+        else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
+        {
+            manager.RespawnPlayer();
+            gameObject.SetActive(false);
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Border")
         {
