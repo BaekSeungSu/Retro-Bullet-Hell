@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
 
     public GameObject bulletObjA;
     public GameObject bulletObjB;
+    public GameObject itemScore;
+    public GameObject itemPower;
+    public GameObject itemBoom;
     public GameObject player;
 
     SpriteRenderer spriteRenderer;
@@ -69,14 +72,37 @@ public class Enemy : MonoBehaviour
         curShotDelay += Time.deltaTime;
     }
 
-    void Onhit(int dmg)
+    public void Onhit(int dmg)
     {
+
+        if (health <= 0)
+            return;
+
         health -= dmg;
 
         if(health <= 0)
         {
             PlayerMove playerLogic = player.GetComponent<PlayerMove>();
             playerLogic.score += enemyScore;
+
+            //Random Item Drop
+            int ran = Random.Range(0, 10);
+            if(ran < 6)
+            {
+
+            }
+            else if(ran < 8) //20%
+            {
+                Instantiate(itemScore, transform.position, itemScore.transform.rotation);
+            }
+            else if (ran < 9) //10%
+            {
+                Instantiate(itemPower, transform.position, itemPower.transform.rotation);
+            }
+            else if (ran < 9.5) //5%
+            {
+                Instantiate(itemBoom, transform.position, itemBoom.transform.rotation);
+            }
             Destroy(gameObject);
         }
     }

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public Text scoreText;
     public Image[] lifeImage ;
+    public Image[] boomImage;
     public GameObject gameOverSet;
 
     void Update()
@@ -45,19 +46,28 @@ public class GameManager : MonoBehaviour
 
         Enemy enemyLogic = enemy.GetComponent<Enemy>();
         enemyLogic.player = player;
-        if (ranPoint == 5 || ranPoint == 6) //Right Spawn
+        if (ranPoint == 5 || ranPoint == 6) //Right Spawns
         {
-            enemy.transform.Rotate(Vector3.back * 45);
+            if (ranEnemy == 0)
+                enemy.transform.Rotate(Vector3.back * 45);
+            else
+                enemy.transform.Rotate(Vector3.forward * 135);
             rigid.velocity = new Vector2(enemyLogic.speed * (-1), -1);
         }
         else if (ranPoint == 7 || ranPoint == 8) //Left Spawn
         {
-            enemy.transform.Rotate(Vector3.forward * 45);
+            if (ranEnemy == 0)
+                enemy.transform.Rotate(Vector3.forward * 45);
+            else
+                enemy.transform.Rotate(Vector3.forward * 225);
             rigid.velocity = new Vector2(enemyLogic.speed, -1);
         }
         else // Front Spawn
         {
-            enemy.transform.Rotate(Vector3.forward * 180);
+            if(ranEnemy == 0)
+                enemy.transform.Rotate(Vector3.forward);
+            else
+                enemy.transform.Rotate(Vector3.forward * 180);
             rigid.velocity = new Vector2(0, enemyLogic.speed * (-1));
         }
     }
@@ -74,6 +84,21 @@ public class GameManager : MonoBehaviour
         for (int index = 0; index < life; index++)
         {
             lifeImage[index].color = new Color(1, 1, 1, 1);
+        }
+    }
+
+    public void UpdateBoomIcon(int boom)
+    {
+        //UI Life Init Disable
+        for (int index = 0; index < 2; index++)
+        {
+            boomImage[index].color = new Color(1, 1, 1, 0);
+        }
+
+        //UI Life Actvie
+        for (int index = 0; index < boom; index++)
+        {
+            boomImage[index].color = new Color(1, 1, 1, 1);
         }
     }
 
