@@ -618,3 +618,6 @@ MonoBehaviour:
   itemBoom: {fileID: 0}
   player: {fileID: 0}
   objectManager: {fileID: 0}
+  patternIndex: -1
+  curPatternCount: 0
+  maxPatternCount: 0200000003000000630000000a000000

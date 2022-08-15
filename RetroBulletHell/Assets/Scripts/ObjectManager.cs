@@ -72,13 +72,13 @@ public class ObjectManager : MonoBehaviour
         bulletPlayerE = new GameObject[100];
 
         bulletEnemyA = new GameObject[100];
-        bulletEnemyB = new GameObject[100];
+        bulletEnemyB = new GameObject[500];
         
         //bulletFollower = new GameObject[100];
         
-        bulletBossA = new GameObject[50];
+        bulletBossA = new GameObject[100];
         bulletBossB = new GameObject[100];
-        bulletBossC = new GameObject[100];
+        bulletBossC = new GameObject[500];
 
         Generate();
     }
