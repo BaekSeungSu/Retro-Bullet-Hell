@@ -2175,6 +2175,7 @@ MonoBehaviour:
   objectManager: {fileID: 1228570839}
   isHit: 0
   isBoomTime: 0
+  isRespawnTime: 0
 --- !u!212 &1199026101
 SpriteRenderer:
   m_ObjectHideFlags: 0
