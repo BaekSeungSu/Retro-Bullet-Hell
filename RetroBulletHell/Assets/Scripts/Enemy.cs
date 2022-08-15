@@ -26,6 +26,10 @@ public class Enemy : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    public int patternIndex;
+    public int curPatternCount;
+    public int[] maxPatternCount;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -35,6 +39,10 @@ public class Enemy : MonoBehaviour
     {
         switch (enemyName)
         {
+            case "Boss":
+                health = 1000;
+                Invoke("Stop",2);
+                break;
             case "L":
                 health = 8;
                 break;
@@ -47,8 +55,84 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void Stop()
+    {
+        if (!gameObject.activeSelf)
+            return;
+
+        Rigidbody2D rigid = GetComponent<Rigidbody2D>();
+        rigid.velocity = Vector2.zero;
+
+        Invoke("Think", 2);
+
+    }
+
+    void Think()
+    {
+        patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
+        curPatternCount = 0;
+
+        switch (patternIndex)
+        {
+            case 0:
+                FireFoward();
+                break;
+            case 1:
+                FireShot();
+                break;
+            case 2:
+                FireArc();
+                break;
+            case 3:
+                FireAround();
+                break;
+        }
+    }
+
+    void FireFoward()
+    {
+        curPatternCount++;
+
+        if(curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireFoward", 2);
+        else
+            Invoke("Think", 3);
+    }
+
+    void FireShot()
+    {
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireShot", 3.5f);
+        else
+            Invoke("Think", 3);
+    }
+
+    void FireArc()
+    {
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireArc", 0.15f);
+        else
+            Invoke("Think", 3);
+    }
+
+    void FireAround()
+    {
+        curPatternCount++;
+
+        if (curPatternCount < maxPatternCount[patternIndex])
+            Invoke("FireAround", 0.7f);
+        else
+            Invoke("Think", 3);
+    }
+
     void Update()
     {
+        if (enemyName == "Boss")
+            return;
         Fire();
         Reload();
     }
@@ -105,7 +189,7 @@ public class Enemy : MonoBehaviour
             playerLogic.score += enemyScore;
 
             //Random Item Drop
-            int ran = Random.Range(0, 10);
+            int ran = enemyName == "Boss" ? 0 : Random.Range(0, 10);
             if (ran < 6)
             {
 
@@ -132,7 +216,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "BorderBullet")
+        if (collision.gameObject.tag == "BorderBullet" && enemyName != "Boss")
         {
             gameObject.SetActive(false);
             transform.rotation = Quaternion.identity;

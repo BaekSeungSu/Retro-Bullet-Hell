@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         spawnList = new List<Spawn>();
-        enemyObjs = new string[] { "EnemyS", "EnemyM", "EnemyL" };
+        enemyObjs = new string[] { "EnemyS", "EnemyM", "EnemyL", "Boss" };
         ReadSpawnFile();
     }
 
@@ -98,6 +98,9 @@ public class GameManager : MonoBehaviour
             case "L":
                 enemyIndex = 2;
                 break;
+            case "Boss":
+                enemyIndex = 3;
+                break;
         }
         int enemyPoint = spawnList[spawnIndex].point;
         GameObject enemy = objectManager.MakeObj(enemyObjs[enemyIndex]);
@@ -126,7 +129,7 @@ public class GameManager : MonoBehaviour
         }
         else // Front Spawn
         {
-            if(enemyIndex == 0)
+            if(enemyIndex == 0 || enemyIndex == 3)
                 enemy.transform.Rotate(Vector3.forward);
             else
                 enemy.transform.Rotate(Vector3.forward * 180);
