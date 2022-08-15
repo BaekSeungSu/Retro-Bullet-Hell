@@ -48,14 +48,35 @@ public class PlayerMove : MonoBehaviour
     public bool isHit;
     public bool isBoomTime;
 
+    public bool isRespawnTime;
 
     Animator anim;
+    SpriteRenderer spriteRenderer;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    void OnEnable()
+    {
+        Unbeatable();
+        Invoke("Unbeatable", 3);
+    }
+
+    void Unbeatable()
+    {
+        isRespawnTime = !isRespawnTime;
+        if (isRespawnTime)
+        { 
+            spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+        }
+        else
+        {
+            spriteRenderer.color = new Color(1, 1, 1, 1);
+        }
+    }
     void Update()
     {
         Move();
@@ -228,6 +249,9 @@ public class PlayerMove : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
+            if (isRespawnTime)
+                return;
+
             if (isHit)
                 return;
 

@@ -91,6 +91,8 @@ public class Enemy : MonoBehaviour
 
     void FireFoward()
     {
+        if (health <= 0)
+            return;
         //전방 발사
         GameObject bossBulletL = objectManager.MakeObj("BulletBossB");
         bossBulletL.transform.position = transform.position + Vector3.left * 2.3f;
@@ -121,6 +123,8 @@ public class Enemy : MonoBehaviour
 
     void FireShot()
     {
+        if (health <= 0)
+            return;
         for (int indeex = 0; indeex < 5; indeex++)
         {
             GameObject bulletR = objectManager.MakeObj("BulletEnemyB");
@@ -146,6 +150,8 @@ public class Enemy : MonoBehaviour
 
     void FireArc()
     {
+        if (health <= 0)
+            return;
         GameObject bullet = objectManager.MakeObj("BulletBossC");
         bullet.transform.position = transform.position;
         bullet.transform.rotation = Quaternion.identity;
@@ -164,6 +170,8 @@ public class Enemy : MonoBehaviour
 
     void FireAround()
     {
+        if (health <= 0)
+            return;
         int roundNumA = 50;
         int roundNumB = 40;
         int roundNum = curPatternCount % 2 == 0 ? roundNumA : roundNumB;
@@ -271,6 +279,7 @@ public class Enemy : MonoBehaviour
                 GameObject itemBoom = objectManager.MakeObj("ItemBoom");
                 itemBoom.transform.position = transform.position;
             }
+            objectManager.DeleteAllObj("Boss");
             gameObject.SetActive(false);
             transform.rotation = Quaternion.identity;
         }

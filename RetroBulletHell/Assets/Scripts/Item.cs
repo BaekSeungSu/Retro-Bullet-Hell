@@ -15,6 +15,6 @@ public class Item : MonoBehaviour
 
     void OnEnable()
     {
-        rigid.velocity = Vector2.down * 1.0f;
+        rigid.velocity = Vector2.down * 2.0f;
     }
 }
