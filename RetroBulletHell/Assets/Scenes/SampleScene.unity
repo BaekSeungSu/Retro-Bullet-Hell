@@ -2171,7 +2171,8 @@ MonoBehaviour:
   bulletObjD: {fileID: 6769501046548602293, guid: 14c2b6fdd4f35954eafc8bd0bf3cf69f, type: 3}
   bulletObjE: {fileID: 6769501046548602293, guid: c39a7cdb20a4d7448ae7ee07e3fa3521, type: 3}
   boomEffect: {fileID: 741100932}
-  manager: {fileID: 1858682984}
+  gameManager: {fileID: 1858682984}
+  objectManager: {fileID: 1228570839}
   isHit: 0
   isBoomTime: 0
 --- !u!212 &1199026101
@@ -2384,6 +2385,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204304055}
   m_CullTransparentMesh: 1
+--- !u!1 &1228570838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1228570840}
+  - component: {fileID: 1228570839}
+  m_Layer: 0
+  m_Name: ObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1228570839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228570838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7047834ce2687254bb126ea3b551f8e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLPrefab: {fileID: 7764084598442751251, guid: 71bb4c0d35815b0479b9b0e85a9c3ae2, type: 3}
+  enemyMPrefab: {fileID: 7898844982658176510, guid: 3dae2a5750668324ab368a63f4620835, type: 3}
+  enemySPrefab: {fileID: 3000954872599373940, guid: a9b17e84141ecad40ba49a024ae1bd90, type: 3}
+  itemScorePrefab: {fileID: 7071201231999144045, guid: 92b0038ae30ff2e45a98e6e1ab681885, type: 3}
+  itemPowerPrefab: {fileID: 7443984969605959413, guid: 567f5b35660b41442a569d1547122c71, type: 3}
+  itemBoomPrefab: {fileID: 3123356787847265840, guid: 4438be3a9edba8d4d9348ae1360c67af, type: 3}
+  bulletPlayerAPrefab: {fileID: 7343524008145015460, guid: d12af0cde15084c43b5461bba3f99f1a, type: 3}
+  bulletPlayerBPrefab: {fileID: 6769501046548602293, guid: ac2ccf143e91ec64a8e705c142a3178b, type: 3}
+  bulletPlayerCPrefab: {fileID: 6769501046548602293, guid: 67b67aff8009e9d4ebed12b3dfcd478b, type: 3}
+  bulletPlayerDPrefab: {fileID: 6769501046548602293, guid: 14c2b6fdd4f35954eafc8bd0bf3cf69f, type: 3}
+  bulletPlayerEPrefab: {fileID: 6769501046548602293, guid: c39a7cdb20a4d7448ae7ee07e3fa3521, type: 3}
+  bulletEnemyAPrefab: {fileID: 7343524008145015460, guid: f447d1afb35d1184491d4a2d3c868797, type: 3}
+  bulletEnemyBPrefab: {fileID: 7343524008145015460, guid: 1eb42187d7c7ec04fa4ed1e6af6d1f01, type: 3}
+--- !u!4 &1228570840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228570838}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.324745, y: -3.2529159, z: -137.17076}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1250357444
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,9 +3912,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyObjs:
-  - {fileID: 3000954872599373940, guid: a9b17e84141ecad40ba49a024ae1bd90, type: 3}
-  - {fileID: 7764084598442751251, guid: 71bb4c0d35815b0479b9b0e85a9c3ae2, type: 3}
-  - {fileID: 7898844982658176510, guid: 3dae2a5750668324ab368a63f4620835, type: 3}
+  - 
+  - 
+  - 
   spawnPoints:
   - {fileID: 1188498618}
   - {fileID: 406329716}
@@ -3880,6 +3937,7 @@ MonoBehaviour:
   - {fileID: 793354285}
   - {fileID: 960990755}
   gameOverSet: {fileID: 985805256}
+  objectManager: {fileID: 1228570839}
 --- !u!4 &1858682985
 Transform:
   m_ObjectHideFlags: 0
