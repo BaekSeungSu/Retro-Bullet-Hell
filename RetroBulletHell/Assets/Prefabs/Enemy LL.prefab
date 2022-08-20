@@ -96,7 +96,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -158,16 +158,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e11386598585764696b380f37ac1a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: L
+  enemyName: LL
   enemyScore: 200
-  speed: 2
+  speed: 0.5
   health: 8
   sprites:
   - {fileID: 0}
-  maxShotDelay: 3
+  maxShotDelay: 2
   curShotDelay: 0
   bulletObjA: {fileID: 7343524008145015460, guid: f447d1afb35d1184491d4a2d3c868797, type: 3}
   bulletObjB: {fileID: 7343524008145015460, guid: 1eb42187d7c7ec04fa4ed1e6af6d1f01, type: 3}
+  bulletObjC: {fileID: 7343524008145015460, guid: a07f9f946dbca134e99495e6c544be8b, type: 3}
+  bulletObjD: {fileID: 7343524008145015460, guid: 6ac265911a9955f4a8a9bb868c61e857, type: 3}
+  bulletObjE: {fileID: 7343524008145015460, guid: a802f3fa0939cdc4dae141a1a5474627, type: 3}
   itemScore: {fileID: 7071201231999144045, guid: 92b0038ae30ff2e45a98e6e1ab681885, type: 3}
   itemPower: {fileID: 7443984969605959413, guid: 567f5b35660b41442a569d1547122c71, type: 3}
   itemBoom: {fileID: 3123356787847265840, guid: 4438be3a9edba8d4d9348ae1360c67af, type: 3}

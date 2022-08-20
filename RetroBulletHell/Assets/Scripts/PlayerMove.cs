@@ -363,6 +363,7 @@ public class PlayerMove : MonoBehaviour
 
             isHit = true;
             life--;
+            power = 1;
             gameManager.UpdateLifeIcon(life);
             gameManager.CallExplosion(transform.position, "P");
 
@@ -396,7 +397,7 @@ public class PlayerMove : MonoBehaviour
                         score += 1000;
                     else
                     {
-                        boom++;
+                        boom+=1;
                         gameManager.UpdateBoomIcon(boom);
                     }
                     break;

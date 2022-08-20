@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3705772618368574516}
   - component: {fileID: 1497201421940420010}
   - component: {fileID: -6190848238712910022}
-  - component: {fileID: 3659445036393214143}
+  - component: {fileID: 7668138874755761348}
   m_Layer: 0
-  m_Name: Enemy Bullet C
+  m_Name: Enemy Bullet E
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300600, guid: 4f3d817ad821bc345b488255f0de8318, type: 3}
+  m_Sprite: {fileID: 21300682, guid: 4f3d817ad821bc345b488255f0de8318, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 1
   isRotate: 0
---- !u!70 &3659445036393214143
+--- !u!70 &7668138874755761348
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,5 +134,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.25, y: 0.5}
-  m_Direction: 0
+  m_Size: {x: 1, y: 0.5}
+  m_Direction: 1

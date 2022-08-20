@@ -86,8 +86,8 @@ public class ObjectManager : MonoBehaviour
     GameObject[] explosion;
     void Awake()
     {
-        boss1 = new GameObject[5];
-        boss2 = new GameObject[5];
+        boss1 = new GameObject[1];
+        boss2 = new GameObject[1];
         enemyL = new GameObject[10];
         enemyM = new GameObject[10];
         enemyS = new GameObject[20];

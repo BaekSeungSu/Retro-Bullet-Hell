@@ -172,26 +172,26 @@ public class GameManager : MonoBehaviour
 
         if (enemyPoint == 5 || enemyPoint == 6) //Right Spawns
         {
-            if (enemyIndex == 0)
-                enemy.transform.Rotate(Vector3.back * 45);
-            else
+            if (enemyIndex == 1 || enemyIndex == 2)
                 enemy.transform.Rotate(Vector3.forward * 135);
+            else
+                enemy.transform.Rotate(Vector3.back * 45);
             rigid.velocity = new Vector2(enemyLogic.speed * (-1), -1);
         }
         else if (enemyPoint == 7 || enemyPoint == 8) //Left Spawn
         {
-            if (enemyIndex == 0)
-                enemy.transform.Rotate(Vector3.forward * 45);
-            else
+            if (enemyIndex == 1 || enemyIndex == 2)
                 enemy.transform.Rotate(Vector3.forward * 225);
+            else
+                enemy.transform.Rotate(Vector3.forward * 45);
             rigid.velocity = new Vector2(enemyLogic.speed, -1);
         }
         else // Front Spawn
         {
-            if(enemyIndex == 0 || enemyIndex == 6 || enemyIndex == 7)
-                enemy.transform.Rotate(Vector3.forward);
-            else
+            if(enemyIndex == 1 || enemyIndex == 2)
                 enemy.transform.Rotate(Vector3.forward * 180);
+            else
+                enemy.transform.Rotate(Vector3.forward);
             rigid.velocity = new Vector2(0, enemyLogic.speed * (-1));
         }
 

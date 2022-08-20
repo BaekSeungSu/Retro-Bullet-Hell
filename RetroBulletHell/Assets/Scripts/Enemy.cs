@@ -172,10 +172,10 @@ public class Enemy : MonoBehaviour
         Vector3 dirVecR = player.transform.position - (transform.position + Vector3.right * 2.3f);
         Vector3 dirVecRR = player.transform.position - (transform.position + Vector3.right * 2.9f);
 
-        rigidL.AddForce(dirVecL.normalized * 8, ForceMode2D.Impulse);
-        rigidLL.AddForce(dirVecLL.normalized * 8, ForceMode2D.Impulse);
-        rigidR.AddForce(dirVecR.normalized * 8, ForceMode2D.Impulse);
-        rigidRR.AddForce(dirVecRR.normalized * 8, ForceMode2D.Impulse);
+        rigidL.AddForce(dirVecL.normalized * 7, ForceMode2D.Impulse);
+        rigidLL.AddForce(dirVecLL.normalized * 7, ForceMode2D.Impulse);
+        rigidR.AddForce(dirVecR.normalized * 7, ForceMode2D.Impulse);
+        rigidRR.AddForce(dirVecRR.normalized * 7, ForceMode2D.Impulse);
 
         curPatternCount++;
 
@@ -189,7 +189,7 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
             return;
-        for (int indeex = 0; indeex < 10; indeex++)
+        for (int indeex = 0; indeex < 9; indeex++)
         {
             GameObject bulletR = objectManager.MakeObj("BulletEnemyB");
             bulletR.transform.position = transform.position + Vector3.left * 2.3f + Vector3.down * 1.0f;
@@ -197,10 +197,10 @@ public class Enemy : MonoBehaviour
             Vector2 dirVec = player.transform.position - transform.position;
             Vector2 ranVec = new Vector2(Random.Range(-0.9f, 4.0f), 0);
             dirVec += ranVec;
-            rigidBR.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
+            rigidBR.AddForce(dirVec.normalized * 4, ForceMode2D.Impulse);
         }
         StartCoroutine(WaitForIt());
-        for (int indeex = 0; indeex < 10; indeex++)
+        for (int indeex = 0; indeex < 9; indeex++)
         {
             GameObject bulletL = objectManager.MakeObj("BulletEnemyB");
             bulletL.transform.position = transform.position + Vector3.right * 2.3f + Vector3.down * 1.0f;
@@ -208,7 +208,7 @@ public class Enemy : MonoBehaviour
             Vector2 dirVec = player.transform.position - transform.position;
             Vector2 ranVec = new Vector2(Random.Range(-4.0f, 0.9f),0);
             dirVec += ranVec;
-            rigidBL.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
+            rigidBL.AddForce(dirVec.normalized * 4, ForceMode2D.Impulse);
         }
         curPatternCount++;
         if (curPatternCount < maxPatternCount[patternIndex])
@@ -413,27 +413,71 @@ public class Enemy : MonoBehaviour
         }
         else if (enemyName == "SS")
         {
-            GameObject bulletB = objectManager.MakeObj("BulletEnemyB");
-            bulletB.transform.position = transform.position;
-            Rigidbody2D rigidB = bulletB.GetComponent<Rigidbody2D>();
-            Vector3 dirVec = player.transform.position - transform.position;
-            rigidB.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
+            GameObject bulletAL = objectManager.MakeObj("BulletEnemyC");
+            bulletAL.transform.position = transform.position + Vector3.left * 0.2f;
+            
+            GameObject bulletAR = objectManager.MakeObj("BulletEnemyC");
+            bulletAR.transform.position = transform.position + Vector3.right * 0.2f;
+          
+            Rigidbody2D rigidAL = bulletAL.GetComponent<Rigidbody2D>();
+            Rigidbody2D rigidAR = bulletAR.GetComponent<Rigidbody2D>();
+            
+
+            Vector3 dirVecL = player.transform.position - (transform.position + Vector3.right * 0.3f);
+            Vector3 dirVecR = player.transform.position - (transform.position + Vector3.left * 0.3f);
+
+            float angleL = Mathf.Atan2(dirVecL.y, dirVecL.x) * Mathf.Rad2Deg;
+            bulletAL.transform.rotation = Quaternion.AngleAxis(angleL + 90, Vector3.forward);
+            float angleR = Mathf.Atan2(dirVecR.y, dirVecR.x) * Mathf.Rad2Deg;
+            bulletAR.transform.rotation = Quaternion.AngleAxis(angleR + 90, Vector3.forward);
+
+            rigidAL.AddForce(dirVecL.normalized * 3, ForceMode2D.Impulse);
+            rigidAR.AddForce(dirVecR.normalized * 3, ForceMode2D.Impulse);
         }
         else if (enemyName == "MM")
         {
-            GameObject bulletB = objectManager.MakeObj("BulletEnemyB");
-            bulletB.transform.position = transform.position;
-            Rigidbody2D rigidB = bulletB.GetComponent<Rigidbody2D>();
+            GameObject bulletAL = objectManager.MakeObj("BulletEnemyA");
+            bulletAL.transform.position = transform.position + Vector3.left * 0.2f;
+            GameObject bulletA = objectManager.MakeObj("BulletEnemyD");
+            bulletA.transform.position = transform.position;
+            GameObject bulletAR = objectManager.MakeObj("BulletEnemyA");
+            bulletAR.transform.position = transform.position + Vector3.right * 0.2f;
+
+            Rigidbody2D rigidAL = bulletAL.GetComponent<Rigidbody2D>();
+            Rigidbody2D rigidA = bulletA.GetComponent<Rigidbody2D>();
+            Rigidbody2D rigidAR = bulletAR.GetComponent<Rigidbody2D>();
+
+
+            Vector3 dirVecL = player.transform.position - (transform.position + Vector3.right * 0.3f);
             Vector3 dirVec = player.transform.position - transform.position;
-            rigidB.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
+            Vector3 dirVecR = player.transform.position - (transform.position + Vector3.left * 0.3f);
+
+            rigidAL.AddForce(dirVecL.normalized * 3, ForceMode2D.Impulse);
+            rigidA.AddForce(Vector3.down * 5, ForceMode2D.Impulse);
+            rigidAR.AddForce(dirVecR.normalized * 3, ForceMode2D.Impulse);
         }
         else if (enemyName == "LL")
         {
-            GameObject bulletB = objectManager.MakeObj("BulletEnemyB");
-            bulletB.transform.position = transform.position;
-            Rigidbody2D rigidB = bulletB.GetComponent<Rigidbody2D>();
-            Vector3 dirVec = player.transform.position - transform.position;
-            rigidB.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
+            GameObject bulletAL = objectManager.MakeObj("BulletEnemyE");
+            bulletAL.transform.position = transform.position + Vector3.left * 0.2f;
+
+            GameObject bulletAR = objectManager.MakeObj("BulletEnemyE");
+            bulletAR.transform.position = transform.position + Vector3.right * 0.2f;
+
+            Rigidbody2D rigidAL = bulletAL.GetComponent<Rigidbody2D>();
+            Rigidbody2D rigidAR = bulletAR.GetComponent<Rigidbody2D>();
+
+
+            Vector3 dirVecL = player.transform.position - (transform.position + Vector3.right * 0.3f);
+            Vector3 dirVecR = player.transform.position - (transform.position + Vector3.left * 0.3f);
+
+            float angleL = Mathf.Atan2(dirVecL.y, dirVecL.x) * Mathf.Rad2Deg;
+            bulletAL.transform.rotation = Quaternion.AngleAxis(angleL + 90, Vector3.forward);
+            float angleR = Mathf.Atan2(dirVecR.y, dirVecR.x) * Mathf.Rad2Deg;
+            bulletAR.transform.rotation = Quaternion.AngleAxis(angleR + 90, Vector3.forward);
+
+            rigidAL.AddForce(dirVecL.normalized * 3, ForceMode2D.Impulse);
+            rigidAR.AddForce(dirVecR.normalized * 3, ForceMode2D.Impulse);
         }
 
         curShotDelay = 0;
@@ -462,21 +506,21 @@ public class Enemy : MonoBehaviour
             //Random Item Drop
             int ran = (enemyName == "Boss1" || enemyName == "Boss2") ? 0 : Random.Range(0, 100);
             
-            if (ran < 69)
+            if (ran < 70)
             {
 
             }
-            else if (ran < 94) //20%
+            else if (ran < 90)
             {
                 GameObject itemScore = objectManager.MakeObj("ItemScore");
                 itemScore.transform.position = transform.position;
             }
-            else if (ran < 99) //10%
+            else if (ran < 98)
             {
                 GameObject itemPower = objectManager.MakeObj("ItemPower");
                 itemPower.transform.position = transform.position;
             }
-            else if (ran < 100) //1%
+            else if (ran < 100)
             {
                 GameObject itemBoom = objectManager.MakeObj("ItemBoom");
                 itemBoom.transform.position = transform.position;
