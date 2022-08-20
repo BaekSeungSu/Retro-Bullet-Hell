@@ -400,8 +400,8 @@ public class Enemy : MonoBehaviour
             Vector3 dirVecL = player.transform.position - (transform.position + Vector3.right * 0.3f);
             Vector3 dirVecR = player.transform.position - (transform.position + Vector3.left * 0.3f);
 
-            rigidAL.AddForce(dirVecL.normalized * 3, ForceMode2D.Impulse);
-            rigidAR.AddForce(dirVecR.normalized * 3, ForceMode2D.Impulse);
+            rigidAL.AddForce(dirVecL.normalized * 2, ForceMode2D.Impulse);
+            rigidAR.AddForce(dirVecR.normalized * 2, ForceMode2D.Impulse);
         }
         else if(enemyName == "L")
         {
@@ -409,7 +409,7 @@ public class Enemy : MonoBehaviour
             bulletB.transform.position = transform.position;
             Rigidbody2D rigidB = bulletB.GetComponent<Rigidbody2D>();
             Vector3 dirVec = player.transform.position - transform.position;
-            rigidB.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
+            rigidB.AddForce(dirVec.normalized * 4, ForceMode2D.Impulse);
         }
         else if (enemyName == "SS")
         {

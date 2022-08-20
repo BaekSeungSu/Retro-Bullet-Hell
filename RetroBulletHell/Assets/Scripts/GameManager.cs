@@ -68,14 +68,27 @@ public class GameManager : MonoBehaviour
 
         if (stage == 3)
         {
+            
             PlayerMove playerLogic = player.GetComponent<PlayerMove>();
             PlayerPrefs.SetInt("Score", playerLogic.score);
-            SceneManager.LoadScene("GameClear");
+            Invoke("ClearScene", 3);
         }
         else
+        {
+            Invoke("NextScene",4);
             Invoke("StageStart", 5);
+        }
     }
 
+    public void NextScene()
+    {
+        SceneManager.LoadScene("Stage " + stage);
+    }
+
+    public void ClearScene()
+    {
+        SceneManager.LoadScene("GameClear");
+    }
 
 
     void ReadSpawnFile()

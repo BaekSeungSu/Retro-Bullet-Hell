@@ -364,6 +364,8 @@ public class PlayerMove : MonoBehaviour
             isHit = true;
             life--;
             power = 1;
+            boom = 2;
+            gameManager.UpdateBoomIcon(boom);
             gameManager.UpdateLifeIcon(life);
             gameManager.CallExplosion(transform.position, "P");
 
