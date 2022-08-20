@@ -35,7 +35,6 @@ public class PlayerMove : MonoBehaviour
     private bool isTouchRight;
     private bool isTouchLeft;
 
-
     public GameObject bulletObjA;
     public GameObject bulletObjB;
     public GameObject bulletObjC;
@@ -53,10 +52,14 @@ public class PlayerMove : MonoBehaviour
     Animator anim;
     SpriteRenderer spriteRenderer;
 
+    private AudioSource audioSource;
+
+
     void Awake()
     {
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -146,8 +149,8 @@ public class PlayerMove : MonoBehaviour
                 rigidE.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
         }
-        
-        
+        audioSource.Play();
+
         curShotDelay = 0;
     }
 
@@ -167,6 +170,7 @@ public class PlayerMove : MonoBehaviour
         if (boom == 0)
             return;
 
+
         boom--;
         isBoomTime = true;
         gameManager.UpdateBoomIcon(boom);
@@ -178,6 +182,9 @@ public class PlayerMove : MonoBehaviour
         GameObject[] enemiesL = objectManager.GetPool("EnemyL");
         GameObject[] enemiesM = objectManager.GetPool("EnemyM");
         GameObject[] enemiesS = objectManager.GetPool("EnemyS");
+        GameObject[] enemiesLL = objectManager.GetPool("EnemyLL");
+        GameObject[] enemiesMM = objectManager.GetPool("EnemyMM");
+        GameObject[] enemiesSS = objectManager.GetPool("EnemySS");
         for (int index = 0; index < enemiesL.Length; index++)
         {
             if (enemiesL[index].activeSelf)
@@ -204,12 +211,47 @@ public class PlayerMove : MonoBehaviour
                 enemyLogic.Onhit(1000);
             }
         }
+        for (int index = 0; index < enemiesLL.Length; index++)
+        {
+            if (enemiesLL[index].activeSelf)
+            {
+                Enemy enemyLogic = enemiesLL[index].GetComponent<Enemy>();
+                enemyLogic.Onhit(1000);
+            }
+        }
+
+        for (int index = 0; index < enemiesMM.Length; index++)
+        {
+            if (enemiesMM[index].activeSelf)
+            {
+                Enemy enemyLogic = enemiesMM[index].GetComponent<Enemy>();
+                enemyLogic.Onhit(1000);
+            }
+        }
+
+        for (int index = 0; index < enemiesSS.Length; index++)
+        {
+            if (enemiesSS[index].activeSelf)
+            {
+                Enemy enemyLogic = enemiesSS[index].GetComponent<Enemy>();
+                enemyLogic.Onhit(1000);
+            }
+        }
 
 
 
         //Remove Enemy Bullet
         GameObject[] bulletsA = objectManager.GetPool("BulletEnemyA");
         GameObject[] bulletsB = objectManager.GetPool("BulletEnemyB");
+        GameObject[] bulletsC = objectManager.GetPool("BulletEnemyC");
+        GameObject[] bulletsD = objectManager.GetPool("BulletEnemyD");
+        GameObject[] bulletsE = objectManager.GetPool("BulletEnemyE");
+        GameObject[] bulletBossA = objectManager.GetPool("BulletBossA");
+        GameObject[] bulletBossB = objectManager.GetPool("BulletBossB");
+        GameObject[] bulletBossC = objectManager.GetPool("BulletBossC");
+        GameObject[] bulletBossD = objectManager.GetPool("BulletBossD");
+        GameObject[] bulletBossE = objectManager.GetPool("BulletBossE");
+        GameObject[] bulletBossF = objectManager.GetPool("BulletBossF");
         for (int index = 0; index < bulletsA.Length; index++)
         {
             if (bulletsA[index].activeSelf)
@@ -224,6 +266,70 @@ public class PlayerMove : MonoBehaviour
                 bulletsB[index].SetActive(false);
             }
         }
+        for (int index = 0; index < bulletsC.Length; index++)
+        {
+            if (bulletsC[index].activeSelf)
+            {
+                bulletsC[index].SetActive(false);
+            }
+        }
+        for (int index = 0; index < bulletsD.Length; index++)
+        {
+            if (bulletsD[index].activeSelf)
+            {
+                bulletsD[index].SetActive(false);
+            }
+        }
+        for (int index = 0; index < bulletsE.Length; index++)
+        {
+            if (bulletsE[index].activeSelf)
+            {
+                bulletsE[index].SetActive(false);
+            }
+        }
+        for (int index = 0; index < bulletBossA.Length; index++)
+        {
+            if (bulletBossA[index].activeSelf)
+            {
+                bulletBossA[index].SetActive(false);
+            }
+        }
+        for (int index = 0; index < bulletBossB.Length; index++)
+        {
+            if (bulletBossB[index].activeSelf)
+            {
+                bulletBossB[index].SetActive(false);
+            }
+        }
+        for (int index = 0; index < bulletBossC.Length; index++)
+        {
+            if (bulletBossC[index].activeSelf)
+            {
+                bulletBossC[index].SetActive(false);
+            }
+        }
+        for (int index = 0; index < bulletBossD.Length; index++)
+        {
+            if (bulletBossD[index].activeSelf)
+            {
+                bulletBossD[index].SetActive(false);
+            }
+        }
+        for (int index = 0; index < bulletBossE.Length; index++)
+        {
+            if (bulletBossE[index].activeSelf)
+            {
+                bulletBossE[index].SetActive(false);
+            }
+        }
+        for (int index = 0; index < bulletBossF.Length; index++)
+        {
+            if (bulletBossF[index].activeSelf)
+            {
+                bulletBossF[index].SetActive(false);
+            }
+        }
+
     }
 
 
@@ -258,6 +364,7 @@ public class PlayerMove : MonoBehaviour
             isHit = true;
             life--;
             gameManager.UpdateLifeIcon(life);
+            gameManager.CallExplosion(transform.position, "P");
 
             if (life == 0)
             {

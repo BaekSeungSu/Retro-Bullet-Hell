@@ -557,19 +557,19 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.048740864, y: 3.225833}
-      - {x: -5.946995, y: 3.5259137}
-      - {x: -5.3767056, y: 1.1200786}
-      - {x: -4.0266953, y: -1.6985997}
-      - {x: -3.599174, y: -1.7472508}
+      - {x: -5.8601255, y: 3.3907828}
+      - {x: -4.913401, y: 1.467557}
+      - {x: -4.1425214, y: -0.8105995}
+      - {x: -3.4254348, y: -0.7048156}
       - {x: -3.0421476, y: -0.09840341}
       - {x: -1.0187504, y: -0.3415276}
       - {x: -0.5621214, y: -0.63245547}
       - {x: 0.67947733, y: -0.5978066}
       - {x: 0.9384252, y: -0.3407469}
       - {x: 3.1223102, y: -0.24037355}
-      - {x: 3.5626132, y: -1.6598688}
-      - {x: 4.1001763, y: -1.6897618}
-      - {x: 5.5915246, y: 1.6112984}
+      - {x: 3.6494825, y: -0.61743367}
+      - {x: 4.2160025, y: -0.76315266}
+      - {x: 4.7517853, y: 1.4568636}
       - {x: 5.7276607, y: 3.2984567}
 --- !u!50 &3029059252205266046
 Rigidbody2D:
@@ -604,10 +604,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e11386598585764696b380f37ac1a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: Boss
+  enemyName: Boss1
   enemyScore: 5000
   speed: 1.5
-  health: 1000
+  health: 10
   sprites: []
   maxShotDelay: 0
   curShotDelay: 0
@@ -617,7 +617,8 @@ MonoBehaviour:
   itemPower: {fileID: 0}
   itemBoom: {fileID: 0}
   player: {fileID: 0}
+  gameManager: {fileID: 0}
   objectManager: {fileID: 0}
   patternIndex: -1
   curPatternCount: 0
-  maxPatternCount: 0200000003000000630000000a000000
+  maxPatternCount: 0100000001000000630000000a000000

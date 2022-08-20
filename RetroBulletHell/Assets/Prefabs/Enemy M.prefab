@@ -165,3 +165,8 @@ MonoBehaviour:
   itemPower: {fileID: 7443984969605959413, guid: 567f5b35660b41442a569d1547122c71, type: 3}
   itemBoom: {fileID: 3123356787847265840, guid: 4438be3a9edba8d4d9348ae1360c67af, type: 3}
   player: {fileID: 0}
+  gameManager: {fileID: 0}
+  objectManager: {fileID: 0}
+  patternIndex: 0
+  curPatternCount: 0
+  maxPatternCount: 
