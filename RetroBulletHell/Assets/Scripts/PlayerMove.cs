@@ -68,6 +68,8 @@ public class PlayerMove : MonoBehaviour
         Invoke("Unbeatable", 3);
     }
 
+
+    //무적시간
     void Unbeatable()
     {
         isRespawnTime = !isRespawnTime;
@@ -90,18 +92,19 @@ public class PlayerMove : MonoBehaviour
 
     void Move()
     {
-        float h = Input.GetAxisRaw("Horizontal");
+
+        float h = Input.GetAxisRaw("Horizontal"); //방향 값 추출
         if ((isTouchRight && h == 1) || (isTouchLeft && h == -1))
             h = 0;
 
-        float v = Input.GetAxisRaw("Vertical");
+        float v = Input.GetAxisRaw("Vertical"); //방향 값 추출
         if ((isTouchTop && v == 1) || (isTouchBottom && v == -1))
             v = 0;
 
-        Vector3 curPos = transform.position;
-        Vector3 nextPos = new Vector3(h, v, 0) * speed * Time.deltaTime;
+        Vector3 curPos = transform.position; //현재 위치
+        Vector3 nextPos = new Vector3(h, v, 0) * speed * Time.deltaTime; //다음 이동 위치
 
-        transform.position = curPos + nextPos;
+        transform.position = curPos + nextPos; 
 
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal"))
         {
@@ -332,9 +335,10 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-
+    //트리거로 제어
     void OnTriggerEnter2D(Collider2D collision)
     {
+        //경계와 접촉할경우
         if(collision.gameObject.tag == "Border")
         {
             switch (collision.gameObject.name)
@@ -355,18 +359,24 @@ public class PlayerMove : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
+            //무적 시간일 경우
             if (isRespawnTime)
                 return;
 
+            //이미 맞은 상태일 경우
             if (isHit)
                 return;
 
             isHit = true;
             life--;
+            //파워와 폭탄개수 초기화
             power = 1;
             boom = 2;
+            //게임 매니저를 통해 정보갱신 
             gameManager.UpdateBoomIcon(boom);
             gameManager.UpdateLifeIcon(life);
+
+            //플레이어 위치에 폭발이펙트
             gameManager.CallExplosion(transform.position, "P");
 
             if (life == 0)
@@ -380,6 +390,7 @@ public class PlayerMove : MonoBehaviour
             gameObject.SetActive(false);
             collision.gameObject.SetActive(false);
         }
+        //아이템 습득
         else if(collision.gameObject.tag == "Item")
         {
             Item item = collision.gameObject.GetComponent<Item>();
@@ -408,12 +419,14 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    //폭탄 이펙트 제거 함수
     void OffBoomEffect()
     {
         boomEffect.SetActive(false);
         isBoomTime = false;
     }
 
+    //경계와 접촉되지 않았을 경우
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Border")

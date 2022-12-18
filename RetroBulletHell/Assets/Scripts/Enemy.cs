@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public string enemyName;
     public int enemyScore;
     public float speed;
+    SpriteRenderer spriteRenderer;
     [SerializeField]
     private int health;
     public Sprite[] sprites;
@@ -37,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnEnable()
@@ -497,6 +498,8 @@ public class Enemy : MonoBehaviour
         }
 
         health -= dmg;
+        spriteRenderer.color = new Color(0, 0, 0, 255);
+        Invoke("ReturnSprite", 0.1f);
 
         if(health <= 0)
         {
@@ -538,6 +541,13 @@ public class Enemy : MonoBehaviour
                 gameManager.StageEnd();
         }
     }
+
+    public void ReturnSprite()
+    {
+        spriteRenderer.color = new Color(255, 255, 255, 255);
+    }
+    
+
 
     void OnTriggerEnter2D(Collider2D collision)
     {
