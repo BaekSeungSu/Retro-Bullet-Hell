@@ -164,12 +164,13 @@ public class PlayerMove : MonoBehaviour
 
     void Boom()
     {
+        // 필살기 버튼을 눌렀는지 체크
         if (!Input.GetButton("Fire2"))
             return;
-
+        // 필살기를 사용중인 상태인지 체크
         if (isBoomTime)
             return;
-
+        // 필살기의 개수가 0이 아닌지 체크
         if (boom == 0)
             return;
 
@@ -196,7 +197,6 @@ public class PlayerMove : MonoBehaviour
                 enemyLogic.Onhit(1000);
             }
         }
-
         for (int index = 0; index < enemiesM.Length; index++)
         {
             if (enemiesM[index].activeSelf)
@@ -205,7 +205,6 @@ public class PlayerMove : MonoBehaviour
                 enemyLogic.Onhit(1000);
             }
         }
-
         for (int index = 0; index < enemiesS.Length; index++)
         {
             if (enemiesS[index].activeSelf)
@@ -222,7 +221,6 @@ public class PlayerMove : MonoBehaviour
                 enemyLogic.Onhit(1000);
             }
         }
-
         for (int index = 0; index < enemiesMM.Length; index++)
         {
             if (enemiesMM[index].activeSelf)
@@ -231,7 +229,6 @@ public class PlayerMove : MonoBehaviour
                 enemyLogic.Onhit(1000);
             }
         }
-
         for (int index = 0; index < enemiesSS.Length; index++)
         {
             if (enemiesSS[index].activeSelf)
@@ -240,7 +237,6 @@ public class PlayerMove : MonoBehaviour
                 enemyLogic.Onhit(1000);
             }
         }
-
 
 
         //Remove Enemy Bullet
